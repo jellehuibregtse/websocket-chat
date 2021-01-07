@@ -9,7 +9,7 @@ export const Message = ({name, message, sender}) => {
              bg={sender ? 'blue.500' : 'white'}
              color={sender ? 'white' : 'black'}>
             <Box p='6'
-            align='left'>
+                 align='left'>
                 <Box
                     mt='1'
                     fontWeight='semibold'

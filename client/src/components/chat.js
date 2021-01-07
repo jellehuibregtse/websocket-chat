@@ -14,11 +14,16 @@ const ScrollSection = styled.div`
 export default class Chat extends Component {
     constructor(props) {
         super(props);
+        console.log(props.name);
         this.state = {
             messages: [],
             composeMessage: '',
-            name: this.props.name
+            name: props.name
         };
+    }
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        this.setState({name: nextProps.name});
     }
 
     isNameValid = () => {
@@ -60,23 +65,29 @@ export default class Chat extends Component {
                         margin: 'auto',
                         padding: '10px'
                     }}>
-                    <InputGroup size="lg">
-                        <Input
-                            isDisabled={this.isNameValid()}
-                            pr='4.5rem'
-                            value={this.state.composeMessage}
-                            onChange={this.updateComposeMessage}
-                        />
-                        <InputRightElement width="4.5rem">
-                            <Button
-                                h="1.75rem"
-                                size="sm"
-                                onClick={this.sendMessage}
-                                isDisabled={this.isNameValid()}>
-                                Send
-                            </Button>
-                        </InputRightElement>
-                    </InputGroup>
+                    <form onSubmit={(event) => {
+                        event.preventDefault();
+                        this.sendMessage();
+                        this.setState({composeMessage: ''});
+                    }}>
+                        <InputGroup size='lg'>
+                            <Input
+                                isDisabled={this.isNameValid()}
+                                pr='4.5 rem'
+                                value={this.state.composeMessage}
+                                onChange={this.updateComposeMessage}
+                            />
+                            <InputRightElement width='4.5rem'>
+                                <Button
+                                    h='1.75rem'
+                                    type='submit'
+                                    size='sm'
+                                    isDisabled={this.isNameValid()}>
+                                    Send
+                                </Button>
+                            </InputRightElement>
+                        </InputGroup>
+                    </form>
                 </Box>
                 <SockJsClient url='http://localhost:8080/chat/'
                               topics={['/topic/user']}

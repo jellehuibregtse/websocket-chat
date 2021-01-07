@@ -1,16 +1,5 @@
-import React, { useState } from 'react';
-import {
-    Badge,
-    Box,
-    Button,
-    Center,
-    Flex,
-    Heading,
-    Input,
-    InputGroup,
-    InputRightElement,
-    Spacer
-} from '@chakra-ui/react';
+import React from 'react';
+import { Badge, Box, Center, Flex, Heading, Input, InputGroup, Spacer } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 
 export const NavBar = ({connected, setName}) => {
