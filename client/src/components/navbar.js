@@ -1,8 +1,19 @@
-import React from 'react';
-import { Badge, Box, Center, Flex, Heading, Spacer } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import {
+    Badge,
+    Box,
+    Button,
+    Center,
+    Flex,
+    Heading,
+    Input,
+    InputGroup,
+    InputRightElement,
+    Spacer
+} from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 
-export const NavBar = ({connected}) => {
+export const NavBar = ({connected, setName}) => {
     return (
         <Box boxShadow='sm'>
             <Box
@@ -15,9 +26,17 @@ export const NavBar = ({connected}) => {
                     <Heading mx='6' size='lg'>
                         Websocket Client
                     </Heading>
-                    <Badge colorScheme={connected ? 'green' : 'red'}>
+                    <Badge mx='6' colorScheme={connected ? 'green' : 'red'}>
                         {connected ? 'Connected' : 'Disconnected'}
                     </Badge>
+                    <Box mx='6' width='20rem'>
+                        <InputGroup size="lg">
+                            <Input
+                                pr='4.5rem'
+                                onChange={(event) => setName(event.target.value)}
+                            />
+                        </InputGroup>
+                    </Box>
                 </Center>
                 <Spacer/>
                 <Center>
