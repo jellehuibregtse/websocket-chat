@@ -10,7 +10,7 @@ export default function App() {
     return (
         <ChakraProvider theme={theme}>
             <NavBar connected={connected} setName={setName}/>
-            <Chat setConnected={setConnected} name={name}/>
+            <Chat connected={connected} setConnected={setConnected} name={name}/>
         </ChakraProvider>
     );
 }

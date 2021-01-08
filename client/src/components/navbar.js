@@ -23,6 +23,7 @@ export const NavBar = ({connected, setName}) => {
                             <Input
                                 pr='4.5rem'
                                 onChange={(event) => setName(event.target.value)}
+                                placeholder='Enter your name here'
                             />
                         </InputGroup>
                     </Box>

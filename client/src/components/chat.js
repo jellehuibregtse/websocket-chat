@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 
 const ScrollSection = styled.div`
     margin: auto;
+    padding: 10px;
     max-height: 80vh;
     max-width: 100vw;
     overflow-y: scroll;
@@ -26,8 +27,8 @@ export default class Chat extends Component {
         this.setState({name: nextProps.name});
     }
 
-    isNameValid = () => {
-        return this.state.name === '';
+    isChatEnabled = () => {
+        return this.state.name === '' || !this.props.connected;
     };
 
     sendMessage = () => {
@@ -72,17 +73,18 @@ export default class Chat extends Component {
                     }}>
                         <InputGroup size='lg'>
                             <Input
-                                isDisabled={this.isNameValid()}
+                                isDisabled={this.isChatEnabled()}
                                 pr='4.5 rem'
                                 value={this.state.composeMessage}
                                 onChange={this.updateComposeMessage}
+                                placeholder='Compose your message here'
                             />
                             <InputRightElement width='4.5rem'>
                                 <Button
                                     h='1.75rem'
                                     type='submit'
                                     size='sm'
-                                    isDisabled={this.isNameValid()}>
+                                    isDisabled={this.isChatEnabled()}>
                                     Send
                                 </Button>
                             </InputRightElement>
