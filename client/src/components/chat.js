@@ -31,6 +31,10 @@ export default class Chat extends Component {
         return this.state.name === '' || !this.props.connected;
     };
 
+    canSendMessage = () => {
+        return this.isChatEnabled && this.state.composeMessage === '';
+    }
+
     sendMessage = () => {
         this.clientRef.sendMessage('/app/user-all', JSON.stringify({
             name: this.state.name,
@@ -84,7 +88,7 @@ export default class Chat extends Component {
                                     h='1.75rem'
                                     type='submit'
                                     size='sm'
-                                    isDisabled={this.isChatEnabled()}>
+                                    isDisabled={this.canSendMessage()}>
                                     Send
                                 </Button>
                             </InputRightElement>

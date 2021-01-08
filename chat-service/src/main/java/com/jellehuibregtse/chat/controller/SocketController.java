@@ -14,7 +14,7 @@ public class SocketController {
     @MessageMapping("/user-all")
     @SendTo("/topic/user")
     public Message send(@Payload Message message) {
-        log.info(message);
+        log.info(String.format("%s: %s", message.getName(), message.getMessage()));
         return message;
     }
 }
